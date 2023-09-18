@@ -1,23 +1,23 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using GCASS_EventConnect_User.Models;
 
-namespace GCASS_EventConnect_User.Controllers;
-
-[ApiController]
-[Route("[controller]")]
-public class UsersController : ControllerBase
+namespace GCASS_EventConnect_User.Controllers
 {
-    private readonly ILogger<UsersController> _logger;
-
-    public UsersController(ILogger<UsersController> logger)
+    [ApiController]
+    [Route("[controller]")]
+    public class UsersController : ControllerBase
     {
-        _logger = logger;
-    }
+        private readonly ILogger<UsersController> _logger;
 
-    [HttpGet(Name = "GetWeatherForecast")]
-    public IEnumerable<User> Get()
-    {
-        return null;
+        public UsersController(ILogger<UsersController> logger)
+        {
+            _logger = logger;
+        }
+
+        [HttpGet(Name = "GetWeatherForecast")]
+        public IEnumerable<User> Get()
+        {
+            return null;
+        }
     }
 }
-
