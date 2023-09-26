@@ -1,4 +1,4 @@
-﻿namespace GCASS_EventConnect.DataLayer
+﻿namespace GCASS_EventConnect_User.DataLayer
 {
     public class User
     {

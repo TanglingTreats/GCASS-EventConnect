@@ -2,11 +2,11 @@
 
 namespace GCASS_EventConnect_User.DataLayer
 {
-    public class UsersDbContext : DbContext
+    public class TransactionDbContext : DbContext
     {
-        public UsersDbContext() { }
-        public UsersDbContext(DbContextOptions opts) : base(opts) { }
-        public DbSet<User> Users { get; set; }
+        public TransactionDbContext() { }
+        public TransactionDbContext(DbContextOptions opts) : base(opts) { }
+        public DbSet<Transaction> Transactions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -16,7 +16,7 @@ namespace GCASS_EventConnect_User.DataLayer
 
         private void SnakeCaseIdentityTableNames(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>(b => { b.ToTable("user"); });
+            modelBuilder.Entity<Transaction>(b => { b.ToTable("transaction"); });
         }
     }
 }

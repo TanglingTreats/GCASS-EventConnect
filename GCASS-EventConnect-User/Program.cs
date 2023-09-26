@@ -1,4 +1,6 @@
-﻿using GCASS_EventConnect.DataLayer;
+﻿using GCASS_EventConnect_User.BusinessLayer;
+using GCASS_EventConnect_User.Config;
+using GCASS_EventConnect_User.DataLayer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,8 +13,21 @@ var builder = WebApplication.CreateBuilder(args);
 //builder.Services.AddEndpointsApiExplorer();
 //builder.Services.AddSwaggerGen();
 
+builder.Services.AddHttpClient();
+builder.Services.AddTransient<ITransactionAggregator, TransactionAggregator>();
+builder.Services.AddOptions();
+builder.Services.Configure<TransactionConfig>(builder.Configuration.GetSection("TransactionConfig"));
+
 builder.Services.AddDbContext<UsersDbContext>(
-    opts => { 
+    opts => {
+        opts.EnableSensitiveDataLogging();
+        opts.EnableDetailedErrors();
+        opts.UseNpgsql(builder.Configuration.GetConnectionString("AppDb"));
+    }, ServiceLifetime.Transient
+);
+
+builder.Services.AddDbContext<TransactionDbContext>(
+    opts => {
         opts.EnableSensitiveDataLogging();
         opts.EnableDetailedErrors();
         opts.UseNpgsql(builder.Configuration.GetConnectionString("AppDb"));
@@ -51,8 +66,15 @@ app.MapPost("/user", async (User user, UsersDbContext db) =>
     await db.SaveChangesAsync();
 });
 
+
+//Compute transaction by ballotId
+app.MapGet("/transaction/{ballotId}", async (string ballotId, ITransactionAggregator transAgg) =>
+{
+    var trans = await transAgg.BuildTransaction(ballotId);
+    return Results.Ok(trans);
+});
+
 #endregion
 
 
 app.Run();
-
