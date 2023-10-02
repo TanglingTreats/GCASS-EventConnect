@@ -6,9 +6,9 @@
         public Guid eventId { get; set; }
         public Guid userId { get; set; }
         public Guid ballotId { get; set; }
-        public Guid createdBy { get; set; }
-        public Guid createdTime { get; set; }
-        public Guid updatedBy { get; set; }
-        public Guid updatedTime { get; set; }
+        public string? createdBy { get; set; }
+        public DateTime? createdTime { get; set; }
+        public string? updatedBy { get; set; }
+        public DateTime? updatedTime { get; set; }
     }
 }
