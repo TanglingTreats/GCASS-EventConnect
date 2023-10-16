@@ -1,4 +1,4 @@
-﻿namespace GCASS_EventConnect_Ballot;
+﻿namespace GCASS_EventConnect_Ballot.Models;
 
 public class Ballot
 {
