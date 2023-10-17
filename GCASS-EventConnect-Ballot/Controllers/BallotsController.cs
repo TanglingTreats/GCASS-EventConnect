@@ -19,6 +19,12 @@ public class BallotsController : ControllerBase
         _ballotService = ballotService;
     }
 
+    [HttpPost]
+    public async Task<IActionResult> Post([FromBody]BallotRequest req) {
+        Console.WriteLine(req.amount);
+        return Ok("");
+    }
+
     [HttpGet]
     public IEnumerable<Ballot> Get()
     {

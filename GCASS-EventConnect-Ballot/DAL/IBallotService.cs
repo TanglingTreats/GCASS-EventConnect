@@ -6,5 +6,7 @@ namespace GCASS_EventConnect_Ballot.DAL
 	public interface IBallotService
 	{
 		IEnumerable<Ballot> GetBallots();
+
+		void Add(Ballot ballot);
 	}
 }
