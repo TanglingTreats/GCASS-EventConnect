@@ -1,6 +1,7 @@
+#!/bin/bash
 set -e
 
-aws ecr get-login-password --region singapore --profile ballot-ecr-agent | docker login --username elainetneoh --password-gcasspass 295806141234.dkr.ecr.ap-southeast-1.amazonaws.com
-docker build -f ./Dockerfile -t GCASS-EventConnect-Ballot:latest .
-docker tag GCASS-EventConnect-Ballot:latest 295806141234.dkr.ecr.ap-southeast-1.amazonaws.com/gcass-eventconnect-ballot:latest
+aws ecr get-login-password --region ap-southeast-1 --profile ballot-ecr-agent | docker login --username AWS --password-stdin 295806141234.dkr.ecr.ap-southeast-1.amazonaws.com
+docker build -f ./Dockerfile -t gcass-eventconnect-ballot:latest .
+docker tag gcass-eventconnect-ballot:latest 295806141234.dkr.ecr.ap-southeast-1.amazonaws.com/gcass-eventconnect-ballot:latest
 docker push 295806141234.dkr.ecr.ap-southeast-1.amazonaws.com/gcass-eventconnect-ballot:latest
