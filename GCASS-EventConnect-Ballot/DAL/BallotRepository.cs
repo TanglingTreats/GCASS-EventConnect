@@ -5,16 +5,23 @@ namespace GCASS_EventConnect_Ballot.DAL
 {
 	public class BallotRepository : IBallotRepository
 	{
-        private BallotDbContext context;
+        private readonly BallotDbContext _context;
 
 		public BallotRepository(BallotDbContext context)
 		{
-            this.context = context;
+            this._context = context;
 		}
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            _context.Dispose();
+        }
+
+        public void Add(Ballot ballot)
+        {
+            Console.WriteLine("Add ballot");
+            _context.Ballots.Add(ballot);
+            _context.SaveChanges();
         }
 
         public IEnumerable<Ballot> GetBallots()

@@ -1,10 +1,13 @@
 ﻿using System;
 using GCASS_EventConnect_Ballot.Models;
 using Microsoft.EntityFrameworkCore;
+
 namespace GCASS_EventConnect_Ballot
 {
 	public class BallotDbContext : DbContext
 	{
+        public DbSet<Ballot> Ballots { get; set; }
+
 		public BallotDbContext()
 		{
 		}

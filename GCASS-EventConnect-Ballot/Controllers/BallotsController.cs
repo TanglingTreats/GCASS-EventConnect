@@ -21,7 +21,7 @@ public class BallotsController : ControllerBase
 
     [HttpPost]
     public async Task<IActionResult> Post([FromBody]BallotRequest req) {
-        Console.WriteLine(req.amount);
+        _ballotService.Add(req);
         return Ok("");
     }
 

@@ -5,14 +5,22 @@ namespace GCASS_EventConnect_Ballot.DAL
 {
 	public class BallotService : IBallotService
 	{
+	    private readonly IBallotRepository _ballotRepository;
 
-		public BallotService()
+		public BallotService(IBallotRepository ballotRepository)
 		{
+            _ballotRepository = ballotRepository;
 		}
 
-        public void Add(Ballot ballot)
+        public void Add(BallotRequest ballotReq)
         {
-            throw new NotImplementedException();
+            Ballot ballot = new Ballot();
+            ballot.amount = ballotReq.amount;
+            ballot.boothId = ballotReq.boothId;
+            ballot.userId = ballotReq.userId;
+            ballot.status = 1;
+
+            _ballotRepository.Add(ballot);
         }
 
         public IEnumerable<Ballot> GetBallots()

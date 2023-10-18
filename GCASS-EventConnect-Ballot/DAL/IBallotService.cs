@@ -7,6 +7,6 @@ namespace GCASS_EventConnect_Ballot.DAL
 	{
 		IEnumerable<Ballot> GetBallots();
 
-		void Add(Ballot ballot);
+		void Add(BallotRequest ballotReq);
 	}
 }

@@ -1,4 +1,6 @@
-﻿using GCASS_EventConnect_Ballot.DAL;
+﻿using GCASS_EventConnect_Ballot;
+using GCASS_EventConnect_Ballot.DAL;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +12,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // DI services
+builder.Services.AddDbContext<BallotDbContext>(opts => opts.UseNpgsql(builder.Configuration.GetConnectionString("AppDb")));
+
+builder.Services.AddScoped<IBallotRepository, BallotRepository>();
+
 builder.Services.AddScoped<IBallotService, BallotService>();
 
 var app = builder.Build();
