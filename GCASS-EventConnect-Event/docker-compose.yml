@@ -1,0 +1,17 @@
+version: 3
+services: GCASS-EventConnect-Event
+  db:
+    image: postgres:13-alpine
+    restart: always
+    environment:
+       -POSTGRES_DATABASE=cloud_weather_dev
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=password1234!
+    ports:
+      - '5432:5432'
+    volumes: 
+      - db:/var/lib/postgresql/data
+    networks:
+	- GCASS-EventConnect-Event
+volumes:
+  postgres-data
