@@ -8,7 +8,14 @@ namespace GCASS_EventConnect_Event.DAL
 	{
 		void Add(Event _event);
 		
-		IEnumerable<Event> GetEvents();
+		IEnumerable<Event> GetEventswithID(string id);
+
+		IEnumerable<Event> GetEventswithName(string name);
+
+		bool UpdateEvent(Event _event, out string reason);
+
+		void DeleteEvent(string id);
+
 	}
 }
 
