@@ -14,5 +14,6 @@ public class Event
     public DateTime createdTime { get; set; }
     public Guid updatedBy { get; set; }
     public DateTime updatedTime { get; set; }
+
 }
 
