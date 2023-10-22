@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using GCASS_EventConnect_Event.Models;
 
 namespace GCASS_EventConnect_Event.DataAccess
 {

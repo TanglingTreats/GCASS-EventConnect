@@ -1,27 +1,23 @@
-﻿using GCASS_EventConnect_Event;
+﻿using GCASS_EventConnect_Event.DAL;
 using GCASS_EventConnect_Event.DataAccess;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var app = builder.Build();
+builder.Services.AddControllers();
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
 
-builder.Services.AddDbContext<Event>(opts =>
-{
-    opts.EnableSensitiveDataLogging();
-    opts.EnableDetailedErrors();
-    opts.UseNpgsql(builder.Configuration.GetConnectionString("EventDb"));
-}, ServiceLifetime.Transient
-);
-app.MapGet("", ([FromQuery] string? eventName , EventDbContext eventDb) => {
-    if (eventName == null)
-    {
-        return Results.BadRequest("Please provide a valid Event Name");
-    }
-    var results = eventDb.Event.Where( currentEvent => currentEvent.Title == eventName && currentEvent.Status==1).ToListAsync();
-    return Results.Ok(results);
-});
+builder.Services.AddDbContext<EventDbContext>(opts => opts.UseNpgsql(builder.Configuration.GetConnectionString("AppDb")));
+
+builder.Services.AddScoped<IEventRepository, EventRepository>();
+
+var app = builder.Build();
+app.UseHttpsRedirection();
+
+app.UseAuthorization();
+
+app.MapControllers();
 
 app.Run();
 

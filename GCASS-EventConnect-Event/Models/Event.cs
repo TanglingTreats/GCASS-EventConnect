@@ -1,4 +1,6 @@
-﻿namespace GCASS_EventConnect_Event;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace GCASS_EventConnect_Event.Models;
 
 public class Event
 {
