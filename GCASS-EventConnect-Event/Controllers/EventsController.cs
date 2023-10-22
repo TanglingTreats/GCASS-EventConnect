@@ -1,22 +1,45 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace GCASS_EventConnect_Event.Controllers;
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-[ApiController]
-[Route("[controller]")]
-public class EventsController : ControllerBase
+namespace GCASS_EventConnect_Event.Controllers
 {
-    private readonly ILogger<EventsController> _logger;
-
-    public EventsController(ILogger<EventsController> logger)
+    [Route("api/[controller]")]
+    [ApiController]
+    public class EventsController : ControllerBase
     {
-        _logger = logger;
-    }
+        // GET: api/<ValuesController>
+        [HttpGet]
+        public IEnumerable<string> Get()
+        {
+            return new string[] { "value1", "value2" };
+        }
 
+        // GET api/<ValuesController>/5
+        [HttpGet("{id}")]
+        public string Get(int id)
+        {
+            return "value";
+        }
 
-    public IEnumerable<Event> Get()
-    {
-        return null;
+        // POST api/<ValuesController>
+        [HttpPost]
+        public void Post([FromBody] Event event)
+        {
+
+        }
+
+        // PUT api/<ValuesController>/5
+        [HttpPut("{id}")]
+        public void Put(int id, [FromBody] string value)
+        {
+
+        }
+
+        // DELETE api/<ValuesController>/5
+        [HttpDelete("{id}")]
+        public void Delete(int id)
+        {
+        }
     }
 }
-
