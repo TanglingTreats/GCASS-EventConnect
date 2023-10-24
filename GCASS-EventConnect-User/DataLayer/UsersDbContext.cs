@@ -5,7 +5,7 @@ namespace GCASS_EventConnect_User.DataLayer
     public class UsersDbContext : DbContext
     {
         public UsersDbContext() { }
-        public UsersDbContext(DbContextOptions opts) : base(opts) { }
+        public UsersDbContext(DbContextOptions<UsersDbContext> opts) : base(opts) { }
         public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

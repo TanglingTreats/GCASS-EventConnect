@@ -10,10 +10,8 @@ public class User
 
     public int type { get; set; }
 
-    public DateTime createdTime { get; set; }
+    public DateTime created_time { get; set; }
 
-    public Guid updatedBy { get; set; }
-
-    public DateTime updatedTime { get; set; }
+    public DateTime updated_time { get; set; }
 }
 
