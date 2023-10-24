@@ -1,4 +1,4 @@
-version:
+version: "3"
 services:
   gcass-eventconnect-postgres:
     image: debezium/postgres:13-alpine

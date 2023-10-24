@@ -1,4 +1,6 @@
-﻿namespace GCASS_EventConnect_Event;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace GCASS_EventConnect_Event.Models;
 
 public class Event
 {
@@ -9,7 +11,7 @@ public class Event
     public DateTime startTime { get; set; }
     public DateTime endTime { get; set; }
     public String location { get; set; }
-    public int status { get; set; }
+    public EventStatus status { get; set; }
     public Guid createdBy { get; set; }
     public DateTime createdTime { get; set; }
     public Guid updatedBy { get; set; }
