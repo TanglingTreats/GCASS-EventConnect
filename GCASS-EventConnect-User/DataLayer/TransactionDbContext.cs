@@ -5,7 +5,7 @@ namespace GCASS_EventConnect_User.DataLayer
     public class TransactionDbContext : DbContext
     {
         public TransactionDbContext() { }
-        public TransactionDbContext(DbContextOptions opts) : base(opts) { }
+        public TransactionDbContext(DbContextOptions<TransactionDbContext> opts) : base(opts) { }
         public DbSet<Transaction> Transactions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

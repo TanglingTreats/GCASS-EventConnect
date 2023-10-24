@@ -61,7 +61,7 @@ app.MapGet("/users/{userId}", async (string userId, UsersDbContext db) =>
 //Create a user
 app.MapPost("/user", async (User user, UsersDbContext db) =>
 {
-    user.createdTime = user.createdTime.ToUniversalTime();
+    user.created_time = user.created_time.ToUniversalTime();
     await db.AddAsync(user);
     await db.SaveChangesAsync();
 });
